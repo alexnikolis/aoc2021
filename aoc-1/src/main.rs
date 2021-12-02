@@ -5,6 +5,10 @@ use std::{
 
 fn count_depth_increases(depth_readings: &[usize]) -> u32 {
     depth_readings
+        .windows(3)
+        .map(|w| w[0] + w[1] + w[2])
+        .collect::<Vec<usize>>()
+        .as_slice()
         .windows(2)
         .fold(0, |acc, w| if w[0] < w[1] { acc + 1} else { acc })
 }
